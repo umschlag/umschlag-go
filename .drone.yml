@@ -96,8 +96,7 @@ pipeline:
     rebuild: true
     mount:
       - vendor/
-      - _tools/bin/
-      - _tools/pkg/
+      - _tools/
     when:
       local: false
       event: [ push ]
