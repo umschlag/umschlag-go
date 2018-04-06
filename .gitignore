@@ -24,7 +24,6 @@ _testmain.go
 *.prof
 
 coverage.out
-.env
 
 /vendor
 /_tools
