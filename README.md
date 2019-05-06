@@ -1,6 +1,6 @@
 # Umschlag: SDK for Go
 
-[![Build Status](http://drone.umschlag.tech/api/badges/umschlag/umschlag-go/status.svg)](http://drone.umschlag.tech/umschlag/umschlag-go)
+[![Build Status](http://cloud.drone.io/api/badges/umschlag/umschlag-go/status.svg)](http://cloud.drone.io/umschlag/umschlag-go)
 [![Stories in Ready](https://badge.waffle.io/umschlag/umschlag-api.svg?label=ready&title=Ready)](http://waffle.io/umschlag/umschlag-api)
 [![Join the Matrix chat at https://matrix.to/#/#umschlag:matrix.org](https://img.shields.io/badge/matrix-%23umschlag%3Amatrix.org-7bc9a4.svg)](https://matrix.to/#/#umschlag:matrix.org)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/13de1b736f51470c86a49f4dd9812dcc)](https://www.codacy.com/app/umschlag/umschlag-go?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=umschlag/umschlag-go&amp;utm_campaign=Badge_Grade)
