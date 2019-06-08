@@ -63,11 +63,11 @@ for the login user operation typically these are written to a http.Request
 */
 type LoginUserParams struct {
 
-	/*Params
+	/*AuthLogin
 	  The credentials to authenticate
 
 	*/
-	Params *models.AuthLogin
+	AuthLogin *models.AuthLogin
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,15 +107,15 @@ func (o *LoginUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the login user params
-func (o *LoginUserParams) WithParams(params *models.AuthLogin) *LoginUserParams {
-	o.SetParams(params)
+// WithAuthLogin adds the authLogin to the login user params
+func (o *LoginUserParams) WithAuthLogin(authLogin *models.AuthLogin) *LoginUserParams {
+	o.SetAuthLogin(authLogin)
 	return o
 }
 
-// SetParams adds the params to the login user params
-func (o *LoginUserParams) SetParams(params *models.AuthLogin) {
-	o.Params = params
+// SetAuthLogin adds the authLogin to the login user params
+func (o *LoginUserParams) SetAuthLogin(authLogin *models.AuthLogin) {
+	o.AuthLogin = authLogin
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -126,8 +126,8 @@ func (o *LoginUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.AuthLogin != nil {
+		if err := r.SetBodyParam(o.AuthLogin); err != nil {
 			return err
 		}
 	}

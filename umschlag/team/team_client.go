@@ -109,30 +109,30 @@ func (a *Client) DeleteTeam(params *DeleteTeamParams) (*DeleteTeamOK, error) {
 }
 
 /*
-DelteTeamFromUser removes a user from team
+DeleteTeamFromUser removes a user from team
 */
-func (a *Client) DelteTeamFromUser(params *DelteTeamFromUserParams) (*DelteTeamFromUserOK, error) {
+func (a *Client) DeleteTeamFromUser(params *DeleteTeamFromUserParams) (*DeleteTeamFromUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDelteTeamFromUserParams()
+		params = NewDeleteTeamFromUserParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "DelteTeamFromUser",
+		ID:                 "DeleteTeamFromUser",
 		Method:             "DELETE",
 		PathPattern:        "/teams/{team_id}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &DelteTeamFromUserReader{formats: a.formats},
+		Reader:             &DeleteTeamFromUserReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DelteTeamFromUserOK), nil
+	return result.(*DeleteTeamFromUserOK), nil
 
 }
 

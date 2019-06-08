@@ -36,6 +36,10 @@ type Profile struct {
 	// Format: uuid
 	ID strfmt.UUID `json:"id,omitempty"`
 
+	// password
+	// Format: password
+	Password strfmt.Password `json:"password,omitempty"`
+
 	// slug
 	Slug string `json:"slug,omitempty"`
 
@@ -61,6 +65,10 @@ func (m *Profile) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePassword(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -107,6 +115,19 @@ func (m *Profile) validateID(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("id", "body", "uuid", m.ID.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Profile) validatePassword(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Password) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("password", "body", "password", m.Password.String(), formats); err != nil {
 		return err
 	}
 

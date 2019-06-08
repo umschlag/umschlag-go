@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -19,11 +21,8 @@ type TeamUserParams struct {
 
 	// perm
 	// Required: true
+	// Enum: [user admin owner]
 	Perm *string `json:"perm"`
-
-	// team
-	// Required: true
-	Team *string `json:"team"`
 
 	// user
 	// Required: true
@@ -38,10 +37,6 @@ func (m *TeamUserParams) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateTeam(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateUser(formats); err != nil {
 		res = append(res, err)
 	}
@@ -52,18 +47,46 @@ func (m *TeamUserParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+var teamUserParamsTypePermPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["user","admin","owner"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		teamUserParamsTypePermPropEnum = append(teamUserParamsTypePermPropEnum, v)
+	}
+}
+
+const (
+
+	// TeamUserParamsPermUser captures enum value "user"
+	TeamUserParamsPermUser string = "user"
+
+	// TeamUserParamsPermAdmin captures enum value "admin"
+	TeamUserParamsPermAdmin string = "admin"
+
+	// TeamUserParamsPermOwner captures enum value "owner"
+	TeamUserParamsPermOwner string = "owner"
+)
+
+// prop value enum
+func (m *TeamUserParams) validatePermEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, teamUserParamsTypePermPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *TeamUserParams) validatePerm(formats strfmt.Registry) error {
 
 	if err := validate.Required("perm", "body", m.Perm); err != nil {
 		return err
 	}
 
-	return nil
-}
-
-func (m *TeamUserParams) validateTeam(formats strfmt.Registry) error {
-
-	if err := validate.Required("team", "body", m.Team); err != nil {
+	// value enum
+	if err := m.validatePermEnum("perm", "body", *m.Perm); err != nil {
 		return err
 	}
 
